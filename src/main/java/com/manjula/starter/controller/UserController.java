@@ -72,4 +72,11 @@ public class UserController {
         return "redirect:/users/password";
     }
 
+    @GetMapping(value = "/profile")
+    public String getProfile(Model model) {
+        UserPrinciple userPrinciple = (UserPrinciple) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("userDto", userService.findById(userPrinciple.getUserId()));
+        return "user/profile";
+    }
+
 }

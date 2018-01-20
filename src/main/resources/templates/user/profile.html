@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <title>My Profile</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <div class="panel-title">User Information</div>
+        </div>
+        <div class="panel-body">
+            <div class="row-fluid">
+                <div class="col-sm-3 col-md-3">
+                    <img class="img-responsive center-block img-circle" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=100" alt="User Pic">
+                </div>
+                <div class="col-sm-7 col-md-7">
+                    <table class="table table-condensed table-responsive table-user-information">
+                        <tbody>
+                        <tr>
+                            <td>First name:</td>
+                            <td th:text="${userDto.firstName}">first name</td>
+                        </tr>
+                        <tr>
+                            <td>Last name:</td>
+                            <td th:text="${userDto.lastName}">name</td>
+                        </tr>
+                        <tr>
+                            <td>Username</td>
+                            <td th:text="${userDto.username}">username</td>
+                        </tr>
+                        <tr>
+                            <td>User type</td>
+                            <td th:text="${userDto.userType}">0</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
