@@ -8,8 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.validation.Valid;
 
 /**
  * @author Manjula Jayawardana
@@ -33,8 +36,13 @@ public class UserController {
         return "user/save";
     }
 
+    // model attribute with name is required for validation to work. then bidingresult should follow.
     @PostMapping(value = "/save")
-    public String save(@ModelAttribute UserDto userDto) {
+    public String save(@Valid @ModelAttribute("user") UserDto userDto, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("user", userDto);
+            return "user/save";
+        }
         userService.save(userDto);
         return "redirect:/users";
     }
@@ -46,7 +54,11 @@ public class UserController {
     }
 
     @PostMapping(value = "/update")
-    public String update(@ModelAttribute UserDto userDto) {
+    public String update(@Valid @ModelAttribute("user") UserDto userDto, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("user", userDto);
+            return "user/update";
+        }
         userService.update(userDto);
         return "redirect:/users";
     }

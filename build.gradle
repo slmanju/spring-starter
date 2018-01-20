@@ -37,7 +37,11 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-security')
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-aop')
 	compile('org.thymeleaf.extras:thymeleaf-extras-springsecurity4')
+
+	compile('javax.validation:validation-api:2.0.1.Final')
+	compile('org.hibernate:hibernate-validator:6.0.7.Final')
 
 	runtime('org.springframework.boot:spring-boot-devtools')
 	runtime('com.h2database:h2')

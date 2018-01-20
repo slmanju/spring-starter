@@ -11,6 +11,10 @@
     font-weight: bold;
 }
 
+.help-block {
+    margin-bottom: 0;
+}
+
 h1 {
     color: #78ab46;
 }
@@ -25,4 +29,8 @@ footer {
 
 footer p {
     padding: 15px;
+}
+
+label {
+    color: gray;
 }

@@ -13,32 +13,45 @@
         </div>
         <div class="panel-body">
             <form action="#" th:action="@{/users/save}" th:object="${user}" method="post" class="form-horizontal">
-                <div th:if="${#fields.hasErrors('*')}" class="alert alert-error">
-                    <p th:each="error : ${#fields.errors('*')}" th:text="${error}">Validation error</p>
-                </div>
                 <input type="hidden" th:field="*{id}" />
+                <div th:if="${#fields.hasErrors('*')}" class="alert alert-warning">
+                    <p th:each="error : ${#fields.errors('*')}" th:text="${error}">error</p>
+                </div>
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="firstName">First name:</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="firstName" th:field="*{firstName}" placeholder="Enter first name" />
+                        <div th:if="${#fields.hasErrors('firstName')}" class="has-error">
+                            <span th:errors="*{firstName}" class="help-block">firstName error</span>
+                        </div>
                     </div>
+
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="lastName">Last Name:</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="lastName" th:field="*{lastName}" placeholder="Enter last name"/>
+                        <div th:if="${#fields.hasErrors('lastName')}" class="has-error">
+                            <span th:errors="*{lastName}" class="help-block">lastName error</span>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="username">Username:</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="username" th:field="*{username}" placeholder="Enter username" />
+                        <div th:if="${#fields.hasErrors('username')}" class="has-error">
+                            <span th:errors="*{username}" class="help-block">username error</span>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="password">Password:</label>
                     <div class="col-sm-10">
                         <input type="password" class="form-control" id="password" th:field="*{password}" placeholder="Enter password"/>
+                        <div th:if="${#fields.hasErrors('password')}" class="has-error">
+                            <span th:errors="*{password}" class="help-block">password error</span>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
