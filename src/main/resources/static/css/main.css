@@ -1,0 +1,28 @@
+/*.panel > .panel-body {*/
+    /*background-color: cornflowerblue;*/
+/*}*/
+
+.navbar-default {
+   background-color: #78ab46; /*cornflowerblue;*/
+}
+
+.navbar-default .navbar-nav > li > a, .navbar-default .navbar-brand, .dropdown-toggle {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+h1 {
+    color: #78ab46;
+}
+
+footer {
+    position: fixed;
+    height: 50px;
+    bottom: 0;
+    width: 100%;
+    background-color: #78ab46; /*cornflowerblue;*/
+}
+
+footer p {
+    padding: 15px;
+}
