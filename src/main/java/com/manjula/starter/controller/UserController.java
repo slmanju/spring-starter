@@ -4,6 +4,7 @@ import com.manjula.starter.config.security.UserPrinciple;
 import com.manjula.starter.dto.PasswordDto;
 import com.manjula.starter.dto.UserDto;
 import com.manjula.starter.service.UserService;
+import com.manjula.starter.validator.UserUniqueValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserUniqueValidator userUniqueValidator;
 
     @GetMapping(value = "")
     public String index(Model model) {
@@ -39,6 +42,7 @@ public class UserController {
     // model attribute with name is required for validation to work. then bidingresult should follow.
     @PostMapping(value = "/save")
     public String save(@Valid @ModelAttribute("user") UserDto userDto, BindingResult bindingResult, Model model) {
+        userUniqueValidator.validate(userDto, bindingResult);
         if (bindingResult.hasErrors()) {
             model.addAttribute("user", userDto);
             return "user/save";
@@ -55,6 +59,7 @@ public class UserController {
 
     @PostMapping(value = "/update")
     public String update(@Valid @ModelAttribute("user") UserDto userDto, BindingResult bindingResult, Model model) {
+        userUniqueValidator.validate(userDto, bindingResult);
         if (bindingResult.hasErrors()) {
             model.addAttribute("user", userDto);
             return "user/update";
