@@ -4,6 +4,7 @@ import com.manjula.starter.config.security.UserPrinciple;
 import com.manjula.starter.dto.PasswordDto;
 import com.manjula.starter.dto.UserDto;
 import com.manjula.starter.service.UserService;
+import com.manjula.starter.validator.PasswordValidator;
 import com.manjula.starter.validator.UserUniqueValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,6 +27,8 @@ public class UserController {
     private UserService userService;
     @Autowired
     private UserUniqueValidator userUniqueValidator;
+    @Autowired
+    private PasswordValidator passwordValidator;
 
     @GetMapping(value = "")
     public String index(Model model) {
@@ -81,7 +84,13 @@ public class UserController {
     }
 
     @PostMapping(value = "/password")
-    public String updatePassword(@ModelAttribute PasswordDto passwordDto, RedirectAttributes redirectAttributes) {
+    public String updatePassword(@Valid @ModelAttribute PasswordDto passwordDto, BindingResult bindingResult,
+                                 Model model, RedirectAttributes redirectAttributes) {
+        passwordValidator.validate(passwordDto, bindingResult);
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("passwordDto", passwordDto);
+            return "user/update-password";
+        }
         UserPrinciple userPrinciple = (UserPrinciple) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         passwordDto.setUserId(userPrinciple.getUserId());
         userService.updatePassword(passwordDto);

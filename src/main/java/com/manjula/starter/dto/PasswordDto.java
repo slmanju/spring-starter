@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotEmpty;
+
 /**
  * @author Manjula Jayawardana
  */
@@ -12,7 +14,9 @@ import lombok.NoArgsConstructor;
 public class PasswordDto {
 
     private Long userId;
+    @NotEmpty(message = "Password is required")
     private String password;
+    @NotEmpty(message = "Confirm password is required")
     private String confirmPassword;
 
 }
