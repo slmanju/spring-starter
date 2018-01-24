@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
       layout:decorate="~{fragments/layout}">
 <head>
-    <title>Users</title>
+    <title th:text="#{users.title}">Users</title>
 </head>
 <body>
 <div layout:fragment="content" th:remove="tag">
@@ -11,20 +11,20 @@
         <thead>
         <tr>
             <td colspan="5">
-                <a th:href="@{/users/save}" class="btn btn-info">New</a>
+                <a th:href="@{/users/save}" class="btn btn-info" th:text="#{button.new}">New</a>
             </td>
         </tr>
         <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Username</th>
-            <th>Type</th>
-            <th>Action</th>
+            <th th:text="#{users.header.id}">ID</th>
+            <th th:text="#{users.header.name}">Name</th>
+            <th th:text="#{users.header.username}">Username</th>
+            <th th:text="#{users.header.role}">Role</th>
+            <th th:text="#{users.header.action}">Action</th>
         </tr>
         </thead>
         <tbody>
         <tr th:if="${users.empty}">
-            <td colspan="3">No users</td>
+            <td colspan="3" th:text="#{users.empty}">No users</td>
         </tr>
         <tr th:each="user : ${users}">
             <td th:text="${user.id}">1</td>
@@ -32,8 +32,8 @@
             <td th:text="${user.username}">manju</td>
             <td th:text="${user.userType}">manju</td>
             <td>
-                <a th:href="@{/users/edit/{id}(id=${user.id})}" class="btn btn-success">Edit</a>
-                <a th:href="@{/users/delete/{id}(id=${user.id})}" class="btn btn-danger">Delete</a>
+                <a th:href="@{/users/edit/{id}(id=${user.id})}" class="btn btn-success" th:text="#{button.edit}">Edit</a>
+                <a th:href="@{/users/delete/{id}(id=${user.id})}" class="btn btn-danger" th:text="#{button.delete}">Delete</a>
             </td>
         </tr>
         </tbody>

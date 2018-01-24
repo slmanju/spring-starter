@@ -30,10 +30,10 @@ public class UserController {
     @Autowired
     private PasswordValidator passwordValidator;
 
-    @GetMapping(value = "")
+    @GetMapping
     public String index(Model model) {
         model.addAttribute("users", userService.findAll());
-        return "user/list";
+        return "user/users";
     }
 
     @GetMapping(value = "/save")

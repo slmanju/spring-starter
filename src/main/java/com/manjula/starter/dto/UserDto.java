@@ -16,14 +16,14 @@ import javax.validation.constraints.NotEmpty;
 public class UserDto {
 
     private Long id;
-    @NotEmpty(message = "First name is required")
+    @NotEmpty(message = "{user.firstname.required}")
     private String firstName;
-    @NotEmpty(message = "Last name is required")
+    @NotEmpty(message = "{user.lastname.required}")
     private String lastName;
-    @NotEmpty(message = "User name is required")
-    @Length(min = 5, message = "User name should be at least {min} characters long")
+    @NotEmpty(message = "{user.username.required}")
+    @Length(min = 5, message = "{user.username.length}")
     private String username;
-    @NotEmpty(message = "Password is required")
+    @NotEmpty(message = "{password.required}")
     private String password;
     private UserType userType;
 

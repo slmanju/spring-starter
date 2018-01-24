@@ -14,9 +14,9 @@ import javax.validation.constraints.NotEmpty;
 public class PasswordDto {
 
     private Long userId;
-    @NotEmpty(message = "Password is required")
+    @NotEmpty(message = "{password.required}")
     private String password;
-    @NotEmpty(message = "Confirm password is required")
+    @NotEmpty(message = "{password.confirm.required}")
     private String confirmPassword;
 
 }

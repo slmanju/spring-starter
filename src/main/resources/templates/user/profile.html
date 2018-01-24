@@ -3,13 +3,13 @@
       xmlns:th="http://www.thymeleaf.org"
       layout:decorate="~{fragments/layout}">
 <head>
-    <title>My Profile</title>
+    <title th:text="#{users.profile.title}">My Profile</title>
 </head>
 <body>
 <div layout:fragment="content" th:remove="tag">
     <div class="panel panel-info">
         <div class="panel-heading">
-            <div class="panel-title">User Information</div>
+            <div class="panel-title" th:text="#{users.profile.header}">User Information</div>
         </div>
         <div class="panel-body">
             <div class="row-fluid">
@@ -20,19 +20,19 @@
                     <table class="table table-condensed table-responsive table-user-information">
                         <tbody>
                         <tr>
-                            <td>First name:</td>
+                            <td th:text="#{users.save.firstname}">First name:</td>
                             <td th:text="${userDto.firstName}">first name</td>
                         </tr>
                         <tr>
-                            <td>Last name:</td>
+                            <td th:text="#{users.save.lastname}">Last name:</td>
                             <td th:text="${userDto.lastName}">name</td>
                         </tr>
                         <tr>
-                            <td>Username</td>
+                            <td th:text="#{users.save.username}">Username</td>
                             <td th:text="${userDto.username}">username</td>
                         </tr>
                         <tr>
-                            <td>User type</td>
+                            <td th:text="#{users.save.role}">User role</td>
                             <td th:text="${userDto.userType}">0</td>
                         </tr>
                         </tbody>

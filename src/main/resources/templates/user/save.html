@@ -3,13 +3,13 @@
       xmlns:th="http://www.thymeleaf.org"
       layout:decorate="~{fragments/layout}">
 <head>
-    <title>Users New</title>
+    <title th:text="#{users.save.title}">Users New</title>
 </head>
 <body>
 <div layout:fragment="content" th:remove="tag">
     <div class="panel panel-info">
         <div class="panel-heading">
-            <div class="panel-title">Add User</div>
+            <div class="panel-title" th:text="#{users.save.header}">Add User</div>
         </div>
         <div class="panel-body">
             <form action="#" th:action="@{/users/save}" th:object="${user}" method="post" class="form-horizontal">
@@ -18,7 +18,7 @@
                     <p th:each="error : ${#fields.errors('*')}" th:text="${error}">error</p>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="firstName">First name:</label>
+                    <label class="control-label col-sm-2" for="firstName" th:text="#{users.save.firstname}">First name:</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="firstName" th:field="*{firstName}" placeholder="Enter first name" />
                         <div th:if="${#fields.hasErrors('firstName')}" class="has-error">
@@ -28,7 +28,7 @@
 
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="lastName">Last Name:</label>
+                    <label class="control-label col-sm-2" for="lastName" th:text="#{users.save.lastname}">Last Name:</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="lastName" th:field="*{lastName}" placeholder="Enter last name"/>
                         <div th:if="${#fields.hasErrors('lastName')}" class="has-error">
@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="username">Username:</label>
+                    <label class="control-label col-sm-2" for="username" th:text="#{users.save.username}">Username:</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="username" th:field="*{username}" placeholder="Enter username" />
                         <div th:if="${#fields.hasErrors('username')}" class="has-error">
@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="password">Password:</label>
+                    <label class="control-label col-sm-2" for="password" th:text="#{users.save.password}">Password:</label>
                     <div class="col-sm-10">
                         <input type="password" class="form-control" id="password" th:field="*{password}" placeholder="Enter password"/>
                         <div th:if="${#fields.hasErrors('password')}" class="has-error">
@@ -55,7 +55,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="role">Role:</label>
+                    <label class="control-label col-sm-2" for="role" th:text="#{users.save.role}">Role:</label>
                     <div class="col-sm-10">
                         <select id="role" th:field="*{userType}" class="form-control">
                             <option th:each="state : ${T(com.manjula.starter.model.UserType).values()}"
@@ -67,7 +67,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-info pull-right">Save</button>
+                        <button type="submit" class="btn btn-info pull-right" th:text="#{button.save}">Save</button>
                     </div>
                 </div>
             </form>
