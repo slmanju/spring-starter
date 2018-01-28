@@ -27,7 +27,7 @@ public class UserUniqueValidator implements Validator {
         Long id = userDto.getId();
         UserDto found = userService.findByUsername(userDto.getUsername());
         if (found != null && (id == null || !id.equals(found.getId()))) {
-            errors.rejectValue("username", "username.alreadyExist", "User name already exist");
+            errors.rejectValue("username", "username.already.exist", "User name already exist");
         }
     }
 

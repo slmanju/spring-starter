@@ -10,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,6 +66,13 @@ public class UserServiceImpl implements UserService {
     public void updatePassword(PasswordDto passwordDto) {
         UserDto userDto = findById(passwordDto.getUserId());
         setEncodedPassword(userDto, passwordDto.getPassword());
+        update(userDto);
+    }
+
+    @Override
+    public void updateLastLogin(String username) {
+        UserDto userDto = findByUsername(username);
+        userDto.setLastLogin(new Date());
         update(userDto);
     }
 

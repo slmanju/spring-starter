@@ -13,3 +13,4 @@ A project to bootstrap Spring based projects. In this project, most common Sprin
 * Thymeleaf Security
 * H2
 * Lombok
+* Hibernate Validator 6

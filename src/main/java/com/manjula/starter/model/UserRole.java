@@ -3,7 +3,7 @@ package com.manjula.starter.model;
 /**
  * @author Manjula Jayawardana
  */
-public enum UserType {
+public enum UserRole {
 
     ADMIN, MANAGER
 

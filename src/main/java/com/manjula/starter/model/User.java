@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * @author Manjula Jayawardana
@@ -24,8 +25,9 @@ public class User {
     private String lastName;
     private String username;
     private String password;
+    private Date lastLogin;
     @Enumerated(EnumType.STRING)
-    private UserType userType;
+    private UserRole userRole;
 
     public UserDto dto() {
         UserDto dto = new UserDto();

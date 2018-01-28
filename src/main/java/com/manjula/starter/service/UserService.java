@@ -22,5 +22,7 @@ public interface UserService {
 
     void updatePassword(PasswordDto passwordDto);
 
+    void updateLastLogin(String username);
+
     void delete(Long id);
 }

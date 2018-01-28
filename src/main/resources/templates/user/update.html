@@ -48,8 +48,8 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="role" th:text="#{users.save.role}">Role:</label>
                     <div class="col-sm-10">
-                        <select id="role" th:field="*{userType}" class="form-control">
-                            <option th:each="state : ${T(com.manjula.starter.model.UserType).values()}"
+                        <select id="role" th:field="*{userRole}" class="form-control">
+                            <option th:each="state : ${T(com.manjula.starter.model.UserRole).values()}"
                                     th:value="${state}"
                                     th:text="${state}">
                             </option>
