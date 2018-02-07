@@ -3,6 +3,7 @@ package com.manjula.starter.controller;
 import com.manjula.starter.config.security.UserPrinciple;
 import com.manjula.starter.dto.PasswordDto;
 import com.manjula.starter.dto.UserDto;
+import com.manjula.starter.service.RoleService;
 import com.manjula.starter.service.UserService;
 import com.manjula.starter.validator.PasswordValidator;
 import com.manjula.starter.validator.UserUniqueValidator;
@@ -26,6 +27,8 @@ public class UserController {
     @Autowired
     private UserService userService;
     @Autowired
+    private RoleService roleService;
+    @Autowired
     private UserUniqueValidator userUniqueValidator;
     @Autowired
     private PasswordValidator passwordValidator;
@@ -39,6 +42,7 @@ public class UserController {
     @GetMapping(value = "/save")
     public String getSaveForm(Model model) {
         model.addAttribute("user", UserDto.builder().build());
+        addRolesAttribute(model);
         return "user/save";
     }
 
@@ -48,6 +52,7 @@ public class UserController {
         userUniqueValidator.validate(userDto, bindingResult);
         if (bindingResult.hasErrors()) {
             model.addAttribute("user", userDto);
+            addRolesAttribute(model);
             return "user/save";
         }
         userService.save(userDto);
@@ -55,8 +60,9 @@ public class UserController {
     }
 
     @GetMapping(value = "/edit/{id}")
-    public String getEidtForm(@PathVariable Long id, Model model) {
+    public String getEditForm(@PathVariable Long id, Model model) {
         model.addAttribute("user", userService.findById(id));
+        addRolesAttribute(model);
         return "user/update";
     }
 
@@ -65,10 +71,15 @@ public class UserController {
         userUniqueValidator.validate(userDto, bindingResult);
         if (bindingResult.hasErrors()) {
             model.addAttribute("user", userDto);
+            addRolesAttribute(model);
             return "user/update";
         }
         userService.update(userDto);
         return "redirect:/users";
+    }
+
+    private void addRolesAttribute(Model model) {
+        model.addAttribute("roles", roleService.findAll());
     }
 
     @GetMapping(value = "/delete/{id}")
@@ -84,7 +95,8 @@ public class UserController {
     }
 
     @PostMapping(value = "/password")
-    public String updatePassword(@Valid @ModelAttribute PasswordDto passwordDto, BindingResult bindingResult,
+    public String updatePassword(@Valid @ModelAttribute PasswordDto passwordDto,
+                                 BindingResult bindingResult,
                                  Model model, RedirectAttributes redirectAttributes) {
         passwordValidator.validate(passwordDto, bindingResult);
         if (bindingResult.hasErrors()) {

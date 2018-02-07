@@ -1,13 +1,14 @@
 package com.manjula.starter.dto;
 
-import com.manjula.starter.model.UserRole;
-import com.manjula.starter.model.UserRole;
+import com.manjula.starter.model.UserType;
+import com.manjula.starter.model.UserType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
@@ -28,6 +29,9 @@ public class UserDto {
     @NotEmpty(message = "{password.required}")
     private String password;
     private Date lastLogin;
-    private UserRole userRole;
+    private UserType userType;
+    private RoleDto roleDto;
+    @Min(value = 1, message = "{user.role.required}")
+    private Long roleId;
 
 }

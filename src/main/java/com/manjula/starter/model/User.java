@@ -27,17 +27,23 @@ public class User {
     private String password;
     private Date lastLogin;
     @Enumerated(EnumType.STRING)
-    private UserRole userRole;
+    private UserType userType;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "role_id")
+    private Role role;
 
     public UserDto dto() {
         UserDto dto = new UserDto();
         BeanUtils.copyProperties(this, dto);
+        dto.setRoleDto(this.getRole().dto());
+        dto.setRoleId(this.getRole().getId());
         return dto;
     }
 
     public static User valueOf(UserDto dto) {
         User user = new User();
         BeanUtils.copyProperties(dto, user);
+        user.setRole(Role.valueOf(dto.getRoleDto()));
         return user;
     }
 

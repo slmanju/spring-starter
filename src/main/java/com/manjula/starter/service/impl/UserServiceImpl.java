@@ -4,6 +4,7 @@ import com.manjula.starter.dto.PasswordDto;
 import com.manjula.starter.dto.UserDto;
 import com.manjula.starter.model.User;
 import com.manjula.starter.repository.UserRepository;
+import com.manjula.starter.service.RoleService;
 import com.manjula.starter.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -26,11 +27,15 @@ public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
     private BCryptPasswordEncoder passwordEncoder;
+    private RoleService roleService;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserRepository userRepository,
+                           BCryptPasswordEncoder passwordEncoder,
+                           RoleService roleService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.roleService = roleService;
     }
 
     @Override
@@ -54,11 +59,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public void save(UserDto userDto) {
         setEncodedPassword(userDto, userDto.getPassword());
+        userDto.setRoleDto(roleService.findById(userDto.getRoleId()));
         userRepository.save(User.valueOf(userDto));
     }
 
     @Override
     public void update(UserDto userDto) {
+        userDto.setRoleDto(roleService.findById(userDto.getRoleId()));
         userRepository.save(User.valueOf(userDto));
     }
 
