@@ -1,3 +1,6 @@
+insert into tbl_permission (id, code, name, description) values (1, 'USER', 'User', 'User management');
+insert into tbl_permission (id, code, name, description) values (2, 'COMPANY', 'Company', 'Company management');
+
 insert into tbl_role (id, code, name, description) values (1, 'ADMIN', 'Admin', 'Admin role');
 insert into tbl_role (id, code, name, description) values (2, 'USER', 'User', 'User role');
 

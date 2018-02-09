@@ -30,13 +30,13 @@ public class Role {
 //    @JoinTable(name = "role_privilege",
 //            joinColumns = { @JoinColumn(name = "role_id", referencedColumnName = "id") },
 //            inverseJoinColumns = { @JoinColumn(name = "privilege_id", referencedColumnName = "id") })
-//    private List<Privilege> privileges = new ArrayList<>();
+//    private List<Permission> privileges = new ArrayList<>();
 
     public static Role valueOf(RoleDto roleDto) {
         Role role = new Role();
         BeanUtils.copyProperties(roleDto, role);
 //        for (PrivilegeDto privilegeDto : roleDto.getPrivilegeDtos()) {
-//            role.getPrivileges().add(Privilege.valueOf(privilegeDto));
+//            role.getPrivileges().add(Permission.valueOf(privilegeDto));
 //        }
         return role;
     }

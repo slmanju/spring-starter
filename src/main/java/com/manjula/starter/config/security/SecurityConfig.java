@@ -23,7 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers("/css/**", "/img/**", "/js/**").permitAll()
+                .antMatchers("/css/**", "/img/**", "/js/**", "/h2/**").permitAll()
                 .anyRequest().fullyAuthenticated()
             .and()
             .formLogin()
@@ -39,6 +39,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             .exceptionHandling()
                 .accessDeniedPage("/access-denied");
+
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
     }
 
     @Autowired

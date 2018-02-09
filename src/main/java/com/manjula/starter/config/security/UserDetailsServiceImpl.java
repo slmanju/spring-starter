@@ -34,6 +34,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return new UserPrinciple(userDto, getAuthorities(userDto));
     }
 
+    // TODO set from permissions
     private Set<GrantedAuthority> getAuthorities(UserDto userDto) {
         Set<GrantedAuthority> authorities = new HashSet<>();
         GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(userDto.getUserType().name());

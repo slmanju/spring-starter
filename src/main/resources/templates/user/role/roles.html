@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <title th:text="#{roles.title}">Users</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <td colspan="6">
+                <a th:href="@{/roles/save}" class="btn btn-info" th:text="#{button.new}">New</a>
+            </td>
+        </tr>
+        <tr>
+            <th th:text="#{roles.header.id}">ID</th>
+            <th th:text="#{roles.header.code}">Code</th>
+            <th th:text="#{roles.header.name}">Name</th>
+            <th th:text="#{roles.header.description}">Description</th>
+            <th th:text="#{roles.header.action}">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${roles.empty}">
+            <td colspan="6" th:text="#{roles.empty}">No roles</td>
+        </tr>
+        <tr th:each="role : ${roles}">
+            <td th:text="${role.id}">1</td>
+            <td th:text="${role.code}">manju</td>
+            <td th:text="${role.name}">manju</td>
+            <td th:text="${role.description}">manju</td>
+            <td>
+                <a th:href="@{/roles/edit/{id}(id=${role.id})}" class="btn btn-success" th:text="#{button.edit}">Edit</a>
+                <a th:href="@{/roles/delete/{id}(id=${role.id})}" class="btn btn-danger" th:text="#{button.delete}">Delete</a>
+                <a th:href="@{/roles/{id}/permissions(id=${role.id})}" class="btn btn-danger" th:text="#{button.permission}">Permission</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

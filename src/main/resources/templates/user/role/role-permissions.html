@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <title th:text="#{roles.save.title}">Roles New</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <div class="panel-title" th:text="#{roles.permission.save.header}">Add User</div>
+        </div>
+        <div class="panel-body">
+            <form action="#" th:action="@{/roles/permissions/save}" th:object="${rolePermission}" method="post" class="form-horizontal">
+                <input type="hidden" th:field="*{roleId}" />
+                <div th:if="${#fields.hasErrors('*')}" class="alert alert-warning">
+                    <p th:each="error : ${#fields.errors('*')}" th:text="${error}">error</p>
+                </div>
+                <div class="form-group">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th th:text="#{permission.header.id}">ID</th>
+                            <th th:text="#{permission.header.name}">Name</th>
+                            <th th:text="#{permission.header.description}">Description</th>
+                            <th th:text="#{permission.header.create}">Create</th>
+                            <th th:text="#{permission.header.view}">View</th>
+                            <th th:text="#{permission.header.delete}">Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:if="${permissions.empty}">
+                            <td colspan="6" th:text="#{permissions.empty}">No roles</td>
+                        </tr>
+                        <tr th:each="permission, stat : ${permissions}">
+                            <input type="hidden"
+                                   th:attr="name='policyDtos[' + ${stat.index} + '].permissionId'"
+                                   th:value="${permission.id}" />
+                            <input type="hidden"
+                                   th:attr="name='policyDtos[' + ${stat.index} + '].code'"
+                                   th:value="${permission.code}" />
+                            <td th:text="${permission.id}">1</td>
+                            <td th:text="${permission.name}">manju</td>
+                            <td th:text="${permission.description}">manju</td>
+                            <td>
+                                <input type="checkbox" th:field="*{policyDtos[__${stat.index}__].create}" />
+                            </td>
+                            <td>
+                                <input type="checkbox" th:field="*{policyDtos[__${stat.index}__].view}" />
+                            </td>
+                            <td>
+                                <input type="checkbox" th:field="*{policyDtos[__${stat.index}__].delete}" />
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-info pull-right" th:text="#{button.save}">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
